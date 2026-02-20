@@ -3,8 +3,6 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
-import { InferenceClient } from "@huggingface/inference";
-
 dotenv.config();
 
 console.log("🚀 Backend file loaded");
@@ -18,14 +16,14 @@ app.get("/api/health", (req, res) => {
 });
 
 // 🔴 HARD STOP if token missing
-if (!process.env.HF_ACCESS_TOKEN) {
-  console.error("❌ HF_ACCESS_TOKEN is missing");
+if (!process.env.CHEFGPT_API_KEY) {
+  console.error("❌ CHEFGPT_API_KEY is missing");
   process.exit(1);
 }
 
-console.log("✅ HF_ACCESS_TOKEN loaded");
+console.log("✅ CHEFGPT_API_KEY loaded");
 
-const hf = new InferenceClient(process.env.HF_ACCESS_TOKEN);
+const hf = new In(process.env.CHEFGPT_API_KEY);
 
 app.post("/api/recipe", async (req, res) => {
   const { ingredients } = req.body;
