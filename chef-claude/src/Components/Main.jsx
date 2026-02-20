@@ -8,6 +8,8 @@ export default function Main() {
     ["all the main spices", "pasta", "ground beef", "tomato paste"]
   )
   const [recipe, setRecipe] = React.useState("")
+  const recipeSection = React.useRef(null)
+  console.log(recipeSection)
 
   async function getRecipe() {
     const recipeMarkdown = await getRecipeFromMistral(ingredients)
@@ -33,6 +35,7 @@ export default function Main() {
 
       {ingredients.length > 0 &&
         <IngredientsList
+          ref={recipeSection}
           ingredients={ingredients}
           getRecipe={getRecipe}
         />
